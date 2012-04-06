@@ -8,13 +8,16 @@
 
 #import "A2AppDelegate.h"
 
-@implementation A2AppDelegate
+#import "QuakeListViewController.h"
 
+@implementation A2AppDelegate
 @synthesize window = _window;
+@synthesize navigationController = _navigationController;
 
 - (void)dealloc
 {
     [_window release];
+    [_navigationController release];
     [super dealloc];
 }
 
@@ -22,7 +25,10 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    QuakeListViewController *masterViewController = [[[QuakeListViewController alloc] initWithNibName:@"QuakeListViewController" bundle:nil] autorelease];
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
+    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
