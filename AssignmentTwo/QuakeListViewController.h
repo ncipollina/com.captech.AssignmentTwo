@@ -10,7 +10,9 @@
 
 @class WebViewController;
 
-@interface QuakeListViewController : UITableViewController
+@interface QuakeListViewController : UITableViewController{
+    UINib *cellLoader;
+}
 
 @property (retain) NSMutableArray *allEntries;
 @property (strong) NSArray *feeds;

@@ -14,6 +14,7 @@
 #import "NSArray+Extras.h"
 #import "Quake.h"
 #import "WebViewController.h"
+#import "QuakeTableViewCell.h"
 
 @interface QuakeListViewController ()
 
@@ -25,6 +26,8 @@
 @synthesize allEntries = _allEntries;
 @synthesize feeds = _feeds;
 @synthesize queue = _queue;
+
+static NSString *CellClassName = @"QuakeTableViewCell";
 
 - (void)refresh{
     
@@ -91,7 +94,6 @@
                 //NSRange matchRange = [match range];
                 NSRange matchRange = [match rangeAtIndex:1];
                 matchString = [NSString stringWithFormat:@"%@ +0000", [description substringWithRange:matchRange]];
-                NSLog(@"%@", matchString);
             }
             
             NSString *title = [item valueForChild:@"title"];
@@ -120,7 +122,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -128,6 +129,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    cellLoader = [[UINib nibWithNibName:CellClassName bundle:[NSBundle mainBundle]] retain];
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
@@ -164,6 +167,8 @@
     _feeds = nil;
     [_webViewController release];
     _webViewController = nil;
+    [cellLoader release];
+    cellLoader = nil;
     [super dealloc];
 }
 
@@ -181,6 +186,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    QuakeTableViewCell *cell = (QuakeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellClassName];
+    if (!cell)
+    {
+        NSArray *topLevelItems = [cellLoader instantiateWithOwner:self options:nil];
+        cell = [topLevelItems objectAtIndex:0];
+    }
+    
+    Quake *quake = [self.allEntries objectAtIndex:indexPath.row];
+    cell.quakeData = quake;
+
+    return cell;
+    
+    /*
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -199,7 +217,10 @@
     cell.textLabel.text = quake.title;        
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, quake.url];
     
+    
+    
     return cell;
+     */
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{

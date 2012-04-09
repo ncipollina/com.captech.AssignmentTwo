@@ -35,8 +35,8 @@
 		93653D36152F5F7E00FA4E56 /* NSArray+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 93653D35152F5F7E00FA4E56 /* NSArray+Extras.m */; };
 		93653D3A152F70F800FA4E56 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93653D38152F70F800FA4E56 /* WebViewController.m */; };
 		93653D3B152F70F800FA4E56 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93653D39152F70F800FA4E56 /* WebViewController.xib */; };
-		93653D3E152F82B700FA4E56 /* QuakeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93653D3D152F82B700FA4E56 /* QuakeTableViewCell.m */; };
-		93653D40152F82EB00FA4E56 /* QuakeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93653D3F152F82EB00FA4E56 /* QuakeTableViewCell.xib */; };
+		93CBF38415331B4C00CF6617 /* QuakeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CBF38215331B4C00CF6617 /* QuakeTableViewCell.m */; };
+		93CBF38515331B4C00CF6617 /* QuakeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93CBF38315331B4C00CF6617 /* QuakeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,9 +92,9 @@
 		93653D37152F70F800FA4E56 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		93653D38152F70F800FA4E56 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		93653D39152F70F800FA4E56 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
-		93653D3C152F82B700FA4E56 /* QuakeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuakeTableViewCell.h; sourceTree = "<group>"; };
-		93653D3D152F82B700FA4E56 /* QuakeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuakeTableViewCell.m; sourceTree = "<group>"; };
-		93653D3F152F82EB00FA4E56 /* QuakeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuakeTableViewCell.xib; sourceTree = "<group>"; };
+		93CBF38115331B4C00CF6617 /* QuakeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuakeTableViewCell.h; sourceTree = "<group>"; };
+		93CBF38215331B4C00CF6617 /* QuakeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuakeTableViewCell.m; sourceTree = "<group>"; };
+		93CBF38315331B4C00CF6617 /* QuakeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuakeTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +151,9 @@
 		93653CE5152F5A4000FA4E56 /* AssignmentTwo */ = {
 			isa = PBXGroup;
 			children = (
+				93CBF38115331B4C00CF6617 /* QuakeTableViewCell.h */,
+				93CBF38215331B4C00CF6617 /* QuakeTableViewCell.m */,
+				93CBF38315331B4C00CF6617 /* QuakeTableViewCell.xib */,
 				93653CEE152F5A4000FA4E56 /* A2AppDelegate.h */,
 				93653CEF152F5A4000FA4E56 /* A2AppDelegate.m */,
 				93653CE6152F5A4000FA4E56 /* Supporting Files */,
@@ -166,9 +169,6 @@
 				93653D37152F70F800FA4E56 /* WebViewController.h */,
 				93653D38152F70F800FA4E56 /* WebViewController.m */,
 				93653D39152F70F800FA4E56 /* WebViewController.xib */,
-				93653D3C152F82B700FA4E56 /* QuakeTableViewCell.h */,
-				93653D3F152F82EB00FA4E56 /* QuakeTableViewCell.xib */,
-				93653D3D152F82B700FA4E56 /* QuakeTableViewCell.m */,
 			);
 			path = AssignmentTwo;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 				93653CEA152F5A4000FA4E56 /* InfoPlist.strings in Resources */,
 				93653D29152F5C0F00FA4E56 /* QuakeListViewController.xib in Resources */,
 				93653D3B152F70F800FA4E56 /* WebViewController.xib in Resources */,
-				93653D40152F82EB00FA4E56 /* QuakeTableViewCell.xib in Resources */,
+				93CBF38515331B4C00CF6617 /* QuakeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +307,7 @@
 				93653D33152F5F3B00FA4E56 /* NSDate+InternetDateTime.m in Sources */,
 				93653D36152F5F7E00FA4E56 /* NSArray+Extras.m in Sources */,
 				93653D3A152F70F800FA4E56 /* WebViewController.m in Sources */,
-				93653D3E152F82B700FA4E56 /* QuakeTableViewCell.m in Sources */,
+				93CBF38415331B4C00CF6617 /* QuakeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +415,7 @@
 				93653CF5152F5A4000FA4E56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
