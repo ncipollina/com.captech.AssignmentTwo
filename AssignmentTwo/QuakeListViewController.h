@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class WebViewController;
+@class Reachability;
 
 @interface QuakeListViewController : UITableViewController{
     UINib *cellLoader;
+    Reachability *internetReach;
 }
 
 @property (retain) NSMutableArray *allEntries;

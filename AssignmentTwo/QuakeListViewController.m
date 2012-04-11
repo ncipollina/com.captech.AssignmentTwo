@@ -15,6 +15,7 @@
 #import "Quake.h"
 #import "WebViewController.h"
 #import "QuakeTableViewCell.h"
+#import "Reachability.h"
 
 @interface QuakeListViewController ()
 
@@ -120,7 +121,11 @@ static NSString *CellClassName = @"QuakeTableViewCell";
 - (void)requestFailed:(ASIHTTPRequest *)request{
     NSError *error = [request error];
     NSLog(@"Error: %@", error);
-}
+    
+    UIAlertView *someError = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Data" message:@"Could not retrieve earthquake data." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [someError show];
+    [someError release];}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -147,6 +152,16 @@ static NSString *CellClassName = @"QuakeTableViewCell";
     self.queue = [[[NSOperationQueue alloc] init] autorelease];
     self.feeds = [NSArray arrayWithObjects:@"http://earthquake.usgs.gov/earthquakes/shakemap/rss.xml",
                   nil];    
+    /*
+    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+    NetworkStatus netStatus = [internetReach currentReachabilityStatus];
+    if (netStatus == NotReachable) {
+        UIAlertView *someError = [[UIAlertView alloc] initWithTitle:@"No Internet" message:@"Internet connection was not identified"delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [someError show];
+        [someError release];
+    }
+     */
     [self refresh];
 }
 
@@ -280,13 +295,22 @@ static NSString *CellClassName = @"QuakeTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    
-    if (self.webViewController == nil){
-        self.webViewController = [[[WebViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]] autorelease];
+    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+    NetworkStatus netStatus = [internetReach currentReachabilityStatus];
+    if (netStatus == NotReachable) {
+        UIAlertView *someError = [[UIAlertView alloc] initWithTitle:@"No Internet" message:@"Internet connection was not identified"delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [someError show];
+        [someError release];
     }
-    Quake *quake = [self.allEntries objectAtIndex:indexPath.row];
-    self.webViewController.quake = quake;
-    [self.navigationController pushViewController:self.webViewController animated:YES];
+    else {
+        if (self.webViewController == nil){
+            self.webViewController = [[[WebViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]] autorelease];
+        }
+        Quake *quake = [self.allEntries objectAtIndex:indexPath.row];
+        self.webViewController.quake = quake;
+        [self.navigationController pushViewController:self.webViewController animated:YES];
+    }
 }
 
 @end
