@@ -18,6 +18,10 @@
 
 @interface QuakeListViewController ()
 
+- (void)refresh;
+- (void)parseFeed:(GDataXMLElement *)rootElement quakes:(NSMutableArray *)quakes;
+- (void)parseQuakes:(GDataXMLElement *)rootElement quakes:(NSMutableArray *)quakes;
+
 @end
 
 @implementation QuakeListViewController
